@@ -1,0 +1,24 @@
+<div class="row">
+    <div *ngIf="allFilms.length">
+        <div class="col-md-12 mt-3 pr-2" *ngFor="let film of allFilms">
+            <div class="card">
+                <img class="card-img-top" src="{{film.Photo}}" alt="Film thumbnail" style="width:100%">
+                <div class="card-body" >
+                    <h4 class="card-title">{{film.Name}}</h4>
+                    <p class="card-text">{{film.Description}}</p>
+                    <a href="#" class="btn btn-primary" (click)="gotoDetails(film.Slug)">See Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" *ngIf="!allFilms || !allFilms.length">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+    </div>
+
+</div>
+<div class="row mt-2">
+    <div class="pl-3">
+        <button type="button" class="btn btn-primary" (click)="gotoPreviousFilm()" *ngIf="presentCount > 0">Previous</button>
+        <button type="button" class="btn btn-primary" (click)="gotoNextFilm()" *ngIf="total> presentCount">Next</button>
+    </div>
+</div>

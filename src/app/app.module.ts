@@ -1,13 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RootComponent } from './root/root.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainContainerComponent } from './main-container/main-container.component';
-
+import { HomepageComponent } from './homepage/homepage.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FilmsComponent } from './films/films.component';
+import { FilmsSingleComponent } from './films-single/films-single.component';
+import {DataBearerService} from './data-bearer.service';
+const appRoutes: Routes = [
+    {
+        path: '',
+        component: HomepageComponent
+    },
+    {
+        path: 'films',
+        component: FilmsComponent
+    },
+    {
+        path: 'film/:slug',
+        component: FilmsSingleComponent
+    },
+    { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -15,12 +34,24 @@ import { MainContainerComponent } from './main-container/main-container.componen
     RootComponent,
     HeaderComponent,
     FooterComponent,
-    MainContainerComponent
+    MainContainerComponent,
+    HomepageComponent,
+    PageNotFoundComponent,
+    FilmsComponent,
+    FilmsSingleComponent
   ],
   imports: [
-    BrowserModule
+    RouterModule.forRoot(
+        appRoutes,
+        {
+          enableTracing: false
+
+        }
+    ),
+    BrowserModule,
+      HttpClientModule
   ],
-  providers: [],
+  providers: [DataBearerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
