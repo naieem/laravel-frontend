@@ -1,18 +1,18 @@
 <div class="row">
-  <div class="col-md-12">
-    <div class="card" *ngIf="film">
-      <img class="card-img-top" src="{{film.Photo}}" alt="Film thumbnail" style="width:100%">
-      <div class="card-body" >
-        <h4 class="card-title">{{film.Name}}</h4>
-        <p class="card-text">Rating: {{film.Rating}}</p>
-        <p class="card-text">Release Date: {{film.RealeaseDate | date}}</p>
-        <p class="card-text">Ticket Price: {{film.TicketPrice}}</p>
-        <p class="card-text">Details: {{film.Description}}</p>
-        <a class="btn btn-primary" (click)="gotoList()">Back to List</a>
-      </div>
+    <div class="col-md-12">
+        <div class="card" *ngIf="film">
+            <img class="card-img-top" src="{{film.Photo}}" alt="Film thumbnail" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">{{film.Name}}</h4>
+                <p class="card-text">Rating: {{film.Rating}}</p>
+                <p class="card-text">Release Date: {{film.RealeaseDate | date}}</p>
+                <p class="card-text">Ticket Price: {{film.TicketPrice}}</p>
+                <p class="card-text">Details: {{film.Description}}</p>
+                <a class="btn btn-primary" (click)="gotoList()">Back to List</a>
+            </div>
+        </div>
+        <div *ngIf="!film">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+        </div>
     </div>
-      <div *ngIf="!film">
-          <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
-      </div>
-  </div>
 </div>

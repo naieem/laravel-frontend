@@ -1,3 +1,31 @@
-<p>
-  registration works!
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div *ngIf="error && !isSuccess">
+            <p>{{error.name}}</p>
+            <p>{{error.email}}</p>
+            <p>{{error.password}}</p>
+        </div>
+        <div *ngIf="isSuccess">
+            User created succesfully
+        </div>
+        <div *ngIf="loading">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+        </div>
+        <form [formGroup]="registrationForm" (submit)="registerNewUser()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" name="email" id="name" formControlName="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" name="email" id="email" formControlName="email" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" name="password" id="pwd" formControlName="password"
+                       required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+        </form>
+    </div>
+</div>

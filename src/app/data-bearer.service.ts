@@ -41,4 +41,13 @@ export class DataBearerService {
             return response;
         });
     }
+    // ============================================
+    // registering new user =======================
+    // ============================================
+    public registernewuser(userData: any): Observable<any> {
+        return this.http.post(this.apiUrl + 'user/new', userData).map((response: any) => {
+
+            return response;
+        });
+    }
 }
