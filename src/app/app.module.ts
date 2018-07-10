@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FilmsComponent } from './films/films.component';
 import { FilmsSingleComponent } from './films-single/films-single.component';
 import {DataBearerService} from './data-bearer.service';
+import { RegistrationComponent } from './registration/registration.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -20,6 +21,10 @@ const appRoutes: Routes = [
     {
         path: 'films',
         component: FilmsComponent
+    },
+    {
+        path: 'user/registration',
+        component: RegistrationComponent
     },
     {
         path: 'film/:slug',
@@ -38,7 +43,8 @@ const appRoutes: Routes = [
     HomepageComponent,
     PageNotFoundComponent,
     FilmsComponent,
-    FilmsSingleComponent
+    FilmsSingleComponent,
+    RegistrationComponent
   ],
   imports: [
     RouterModule.forRoot(
