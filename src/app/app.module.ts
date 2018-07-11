@@ -25,6 +25,10 @@ const appRoutes: Routes = [
         component: FilmsComponent
     },
     {
+        path: 'film/create',
+        component: NewFilmComponent
+    },
+    {
         path: 'user/registration',
         component: RegistrationComponent
     },
@@ -65,5 +69,6 @@ const appRoutes: Routes = [
     providers: [DataBearerService],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

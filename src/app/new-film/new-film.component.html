@@ -1,3 +1,55 @@
-<p>
-  new-film works!
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div *ngIf="error && !isSuccess">
+            <p>{{error}}</p>
+        </div>
+        <div *ngIf="isSuccess">
+            Film inserted succesfully
+        </div>
+        <div *ngIf="loading">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+        </div>
+        <form [formGroup]="filmCreationForm" (submit)="createNewFilm()">
+            <div class="form-group">
+                <label for="Name">Name:</label>
+                <input type="text" class="form-control" name="email" id="Name" formControlName="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Description">Description:</label>
+                <textarea class="form-control" name="Description" id="Description" formControlName="Description"
+                          required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Rating">Rating:</label>
+                <input type="text" class="form-control" name="Rating" id="Rating" formControlName="Rating" required>
+            </div>
+            <div class="form-group">
+                <label for="TicketPrice">TicketPrice:</label>
+                <input type="text" class="form-control" name="TicketPrice" id="TicketPrice"
+                       formControlName="TicketPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="Country">Country:</label>
+                <input type="text" class="form-control" name="Country" id="Country" formControlName="Country" required>
+            </div>
+            <div class="form-group">
+                <label for="Genre">Genre:</label>
+                <input type="text" class="form-control" name="Genre" id="Genre" formControlName="Genre" required>
+            </div>
+            <div class="form-group">
+                <label for="Slug">Slug:</label>
+                <input type="text" class="form-control" name="Slug" id="Slug" formControlName="Slug" required>
+            </div>
+            <div class="form-group">
+                <label for="Photo">Photo:</label>
+                <input type="text" class="form-control" name="Photo" id="Photo" formControlName="Photo" required>
+            </div>
+            <div class="form-group">
+                <label for="RealeaseDate">RealeaseDate:</label>
+                <input type="date" class="form-control" name="RealeaseDate" formControlName="RealeaseDate" id="RealeaseDate">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="filmCreationForm.invalid">Submit</button>
+
+        </form>
+    </div>
+</div>
