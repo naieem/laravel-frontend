@@ -51,9 +51,16 @@ export class DataBearerService {
         });
     }
     public createNewFilm(filmObject: any): Observable<any> {
-        debugger;
+        
         return this.http.post(this.apiUrl + 'film/create', filmObject).map((response: any) => {
-            debugger;
+
+            return response;
+        });
+    }
+    public createComment(commentObject: any): Observable<any> {
+
+        return this.http.post(this.apiUrl + 'film/create', filmObject).map((response: any) => {
+
             return response;
         });
     }

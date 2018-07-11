@@ -15,6 +15,8 @@ import {FilmsSingleComponent} from './films-single/films-single.component';
 import {DataBearerService} from './data-bearer.service';
 import {RegistrationComponent} from './registration/registration.component';
 import { NewFilmComponent } from './new-film/new-film.component';
+import { CommentComponent } from './comment/comment.component';
+import { CommentListComponent } from './comment-list/comment-list.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
         FilmsComponent,
         FilmsSingleComponent,
         RegistrationComponent,
-        NewFilmComponent
+        NewFilmComponent,
+        CommentComponent,
+        CommentListComponent
     ],
     imports: [
         RouterModule.forRoot(
