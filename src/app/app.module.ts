@@ -14,6 +14,7 @@ import {FilmsComponent} from './films/films.component';
 import {FilmsSingleComponent} from './films-single/films-single.component';
 import {DataBearerService} from './data-bearer.service';
 import {RegistrationComponent} from './registration/registration.component';
+import { NewFilmComponent } from './new-film/new-film.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
         PageNotFoundComponent,
         FilmsComponent,
         FilmsSingleComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        NewFilmComponent
     ],
     imports: [
         RouterModule.forRoot(
