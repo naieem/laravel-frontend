@@ -1,3 +1,9 @@
-<p>
-  comment-list works!
-</p>
+<div class="comments-list">
+  <div class="media" *ngFor="let comment of comments">
+      <p class="pull-right"><small>{{comment.created_at | date}}</small></p>
+    <div class="media-body">
+      <h3 class="media-heading user_name mb-0">By: {{comment.Name}}</h3>
+      <p>Comment: {{comment.Comment}}</p>
+    </div>
+  </div>
+</div>

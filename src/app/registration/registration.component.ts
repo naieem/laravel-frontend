@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
         this.loading = true;
         this.databearer.registernewuser(this.registrationForm.value).subscribe((response: any) => {
             this.loading = false;
-            if (response && response.token) {
+            if (response && response.status) {
                 this.registrationForm.reset();
                 this.isSuccess = true;
             } else {

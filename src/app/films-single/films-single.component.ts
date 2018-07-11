@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {Router, ActivatedRoute} from '@angular/router';
 import {DataBearerService} from '../data-bearer.service';
+import {forEach} from "@angular/router/src/utils/collection";
 @Component({
     selector: 'app-films-single',
     templateUrl: './films-single.component.html',
@@ -9,7 +10,7 @@ import {DataBearerService} from '../data-bearer.service';
 })
 export class FilmsSingleComponent implements OnInit {
     film: any;
-
+    comments: any[];
     constructor(private route: ActivatedRoute,
                 private router: Router, private databearer: DataBearerService) {
         this.route.params.subscribe((params: any) => {
@@ -22,6 +23,7 @@ export class FilmsSingleComponent implements OnInit {
 
     ngOnInit() {
     }
+
     gotoList() {
         this.router.navigate(['films']);
     }

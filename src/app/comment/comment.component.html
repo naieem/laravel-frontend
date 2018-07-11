@@ -1,15 +1,26 @@
 <div class="row">
   <div class="col-md-12">
-    <form [formGroup]="filmCreationForm" (submit)="addNewComment()">
+      <div *ngIf="error && !isSuccess">
+          <p>{{error.Name}}</p>
+          <p>{{error.Comment}}</p>
+          <p>{{error.film_id}}</p>
+      </div>
+      <div *ngIf="isSuccess">
+          Comment added succesfully
+      </div>
+      <div *ngIf="loading">
+          <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+      </div>
+    <form [formGroup]="commentForm" (submit)="addNewComment()">
       <div class="form-group">
         <label for="Name">Name:</label>
-        <input type="text" class="form-control" formControlName="Name" id="Name">
+        <input type="text" class="form-control" formControlName="Name" id="Name" required>
       </div>
       <div class="form-group">
         <label for="Comment">Comment:</label>
-          <textarea class="form-control" id="Comment" formControlName="Comment"></textarea>
+          <textarea class="form-control" id="Comment" formControlName="Comment" required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Comment</button>
+      <button type="submit" class="btn btn-primary" [disabled]="commentForm.invalid">Comment</button>
     </form>
   </div>
 </div>
