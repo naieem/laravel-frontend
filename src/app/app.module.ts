@@ -17,6 +17,7 @@ import {RegistrationComponent} from './registration/registration.component';
 import { NewFilmComponent } from './new-film/new-film.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+import { LoginComponent } from './login/login.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -33,6 +34,10 @@ const appRoutes: Routes = [
     {
         path: 'user/registration',
         component: RegistrationComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'film/:slug',
@@ -55,7 +60,8 @@ const appRoutes: Routes = [
         RegistrationComponent,
         NewFilmComponent,
         CommentComponent,
-        CommentListComponent
+        CommentListComponent,
+        LoginComponent
     ],
     imports: [
         RouterModule.forRoot(

@@ -51,16 +51,29 @@ export class DataBearerService {
             return response;
         });
     }
-
+    // ============================================
+    // creating new film ==========================
+    // ============================================
     public createNewFilm(filmObject: any): Observable<any> {
         return this.http.post(this.apiUrl + 'film/create', filmObject).map((response: any) => {
             return response;
         });
     }
-
+    // =============================================
+    // adding new comment ==========================
+    // =============================================
     public createComment(commentObject: any): Observable<any> {
 
         return this.http.post(this.apiUrl + 'comment/add', commentObject).map((response: any) => {
+            return response;
+        });
+    }
+    // =============================================
+    // login user ==================================
+    // =============================================
+    public login(loginInfo: any): Observable<any> {
+
+        return this.http.post(this.apiUrl + 'user/login', loginInfo).map((response: any) => {
             return response;
         });
     }
