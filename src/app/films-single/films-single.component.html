@@ -4,6 +4,7 @@
             <img class="card-img-top" src="{{film.Photo}}" alt="Film thumbnail" style="width:100%">
             <div class="card-body">
                 <h4 class="card-title">{{film.Name}}</h4>
+                <p class="card-text" *ngIf="film.genre.length">Genre: <span *ngFor="let genre of film.genre;let last = last;">{{genre.title}}<small *ngIf="!last">, </small></span></p>
                 <p class="card-text">Rating: {{film.Rating}}</p>
                 <p class="card-text">Release Date: {{film.RealeaseDate | date}}</p>
                 <p class="card-text">Ticket Price: {{film.TicketPrice}}</p>

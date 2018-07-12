@@ -14,7 +14,6 @@ export class FilmsSingleComponent implements OnInit, AfterViewInit {
                 private router: Router, private databearer: DataBearerService) {
         this.route.params.subscribe((params: any) => {
             this.databearer.getBySlug(params.slug).subscribe((response: any) => {
-
                 this.film = response[0];
             });
         });
