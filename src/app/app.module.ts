@@ -2,7 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import {AppComponent} from './app.component';
 import {RootComponent} from './root/root.component';
 import {HeaderComponent} from './header/header.component';
@@ -18,6 +19,8 @@ import { NewFilmComponent } from './new-film/new-film.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { LoginComponent } from './login/login.component';
+import { HttpInterceptor} from './http-interceptor';
+import {AuthGuardService} from './auth-guard.service';
 const appRoutes: Routes = [
     {
         path: '',
@@ -37,7 +40,8 @@ const appRoutes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'film/:slug',
@@ -76,7 +80,15 @@ const appRoutes: Routes = [
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [DataBearerService],
+    providers: [
+        DataBearerService,
+        AuthGuardService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpInterceptor,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 

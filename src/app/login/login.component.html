@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row" *ngIf="!isUserLoggedIn">
   <div class="col-md-12">
     <div *ngIf="error && !isSuccess">
       <p>{{error.email}}</p>
       <p>{{error.password}}</p>
     </div>
     <div *ngIf="isSuccess">
-      User created succesfully
+      Logged in succesfull
     </div>
     <div *ngIf="loading">
       <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">

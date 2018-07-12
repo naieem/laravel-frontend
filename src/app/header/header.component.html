@@ -13,21 +13,21 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="./user/registration">Registration</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="./login">Login</a>
-        </li>
     </ul>
     <ul class="navbar-nav profile">
-
+        <div *ngIf="loading">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+        </div>
         <!-- Dropdown -->
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Name
+        <li class="nav-item dropdown"  *ngIf="!loading">
+            <a class="nav-link" *ngIf="!isUserLoggedIn" routerLink="./login">
+                Login
             </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Link 1</a>
-                <a class="dropdown-item" href="#">Link 2</a>
-                <a class="dropdown-item" href="#">Link 3</a>
+            <a class="nav-link dropdown-toggle" *ngIf="isUserLoggedIn" href="#" id="navbardrop" data-toggle="dropdown">
+                {{userName}}
+            </a>
+            <div class="dropdown-menu" *ngIf="isUserLoggedIn">
+                <a class="dropdown-item" (click)="logout()" href="#">Logout</a>
             </div>
         </li>
     </ul>

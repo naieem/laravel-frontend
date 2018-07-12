@@ -2,11 +2,14 @@ import {Injectable, EventEmitter} from '@angular/core';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-import {Film} from './films/film';
 @Injectable()
 export class DataBearerService {
+    private isUserLoggedIn: boolean;
     apiUrl = 'http://localhost:8000/api/';
     newCommentArrived: EventEmitter<any> = new EventEmitter<any>();
+    userLoggedInStatusChanged: EventEmitter<any> = new EventEmitter<any>();
+    loginStatusUpdated: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     constructor(private http: HttpClient) {
     }
 
@@ -51,6 +54,7 @@ export class DataBearerService {
             return response;
         });
     }
+
     // ============================================
     // creating new film ==========================
     // ============================================
@@ -59,6 +63,7 @@ export class DataBearerService {
             return response;
         });
     }
+
     // =============================================
     // adding new comment ==========================
     // =============================================
@@ -68,13 +73,49 @@ export class DataBearerService {
             return response;
         });
     }
+
     // =============================================
     // login user ==================================
     // =============================================
     public login(loginInfo: any): Observable<any> {
 
-        return this.http.post(this.apiUrl + 'user/login', loginInfo).map((response: any) => {
+        return this.http.post(this.apiUrl + 'auth/login', loginInfo).map((response: any) => {
             return response;
         });
+    }
+
+    // =============================================
+    // verify token ================================
+    // =============================================
+    public getLoggedInUserInfo(): Observable<any> {
+
+        return this.http.get(this.apiUrl + 'auth/getLoggedInUserInfo').map((response: any) => {
+
+            return response;
+        });
+    }
+
+    // =============================================
+    // verify token ================================
+    // =============================================
+    public logout(): Observable<any> {
+        return this.http.get(this.apiUrl + 'auth/logout').map((response: any) => {
+
+            return response;
+        });
+    }
+
+    // =========================================
+    // setting logged in user status ===========
+    // =========================================
+    public setUserLoggedInStatus(status: boolean) {
+        this.isUserLoggedIn = status;
+    }
+
+    // =========================================
+    // getting logged in user status ===========
+    // =========================================
+    public getUserLoggedInStatus() {
+        return this.isUserLoggedIn;
     }
 }

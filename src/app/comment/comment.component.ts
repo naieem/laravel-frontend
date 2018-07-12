@@ -26,6 +26,7 @@ export class CommentComponent implements OnInit {
     addNewComment() {
         const commentObj = this.commentForm.value;
         commentObj.film_id = this.filmId;
+        commentObj.created_at = new Date();
         this.loading = true;
         this.databearer.createComment(commentObj).subscribe((response: any) => {
             this.loading = false;

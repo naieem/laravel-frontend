@@ -1,16 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {switchMap} from 'rxjs/operators';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {DataBearerService} from '../data-bearer.service';
-import {forEach} from "@angular/router/src/utils/collection";
 @Component({
     selector: 'app-films-single',
     templateUrl: './films-single.component.html',
     styleUrls: ['./films-single.component.css']
 })
-export class FilmsSingleComponent implements OnInit {
+export class FilmsSingleComponent implements OnInit, AfterViewInit {
     film: any;
     comments: any[];
+    isUserloggedIn: boolean;
     constructor(private route: ActivatedRoute,
                 private router: Router, private databearer: DataBearerService) {
         this.route.params.subscribe((params: any) => {
@@ -19,9 +18,22 @@ export class FilmsSingleComponent implements OnInit {
                 this.film = response[0];
             });
         });
+        this.databearer.userLoggedInStatusChanged.subscribe((response: any) => {
+            if (response && response.logged_in) {
+                this.isUserloggedIn = true;
+            } else {
+                this.isUserloggedIn = false;
+            }
+        });
     }
 
-    ngOnInit() {
+    ngOnInit() {}
+    ngAfterViewInit() {
+        if (this.databearer.getUserLoggedInStatus()) {
+            this.isUserloggedIn = true;
+        } else {
+            this.isUserloggedIn = false;
+        }
     }
 
     gotoList() {

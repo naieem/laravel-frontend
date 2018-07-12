@@ -22,7 +22,9 @@
         </div>
         <hr *ngIf="film">
         <app-comment-list *ngIf="film" [comments]="film.comment"></app-comment-list>
-        <h1 *ngIf="film">Reply</h1>
-        <app-comment *ngIf="film" [filmId]="film.id"></app-comment>
+        <div *ngIf="film && isUserloggedIn">
+            <h1>Reply</h1>
+            <app-comment [filmId]="film.id"></app-comment>
+        </div>
     </div>
 </div>
