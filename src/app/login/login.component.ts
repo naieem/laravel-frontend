@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     loginUser() {
         this.loading = true;
         this.databearer.login(this.loginForm.value).subscribe((response: any) => {
-            
+
             this.loading = false;
             if (response && response.access_token) {
                 this.loginForm.reset();

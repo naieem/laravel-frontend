@@ -9,47 +9,48 @@
         <div *ngIf="loading">
             <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
         </div>
-        <form [formGroup]="filmCreationForm" (submit)="createNewFilm()">
+        <form #filmCreation="ngForm" (submit)="createNewFilm(filmCreation)">
             <div class="form-group">
                 <label for="Name">Name:</label>
-                <input type="text" class="form-control" name="email" id="Name" formControlName="Name" required>
+                <input type="text" class="form-control" placeholder="Enter name" name="email" id="Name" [(ngModel)]="filmCreationForm.Name" required>
             </div>
             <div class="form-group">
                 <label for="Description">Description:</label>
-                <textarea class="form-control" name="Description" id="Description" formControlName="Description"
+                <textarea class="form-control" placeholder="Enter description" name="Description" id="Description" [(ngModel)]="filmCreationForm.Description"
                           required></textarea>
             </div>
             <div class="form-group">
                 <label for="Rating">Rating:</label>
-                <input type="text" class="form-control" name="Rating" id="Rating" formControlName="Rating" required>
+                <input type="text" class="form-control" placeholder="Enter rating" name="Rating" id="Rating" [(ngModel)]="filmCreationForm.Rating" required>
             </div>
             <div class="form-group">
                 <label for="TicketPrice">TicketPrice:</label>
-                <input type="text" class="form-control" name="TicketPrice" id="TicketPrice"
-                       formControlName="TicketPrice" required>
+                <input type="text" class="form-control" placeholder="Enter ticketPrice" name="TicketPrice" id="TicketPrice"
+                       [(ngModel)]="filmCreationForm.TicketPrice" required>
             </div>
             <div class="form-group">
                 <label for="Country">Country:</label>
-                <input type="text" class="form-control" name="Country" id="Country" formControlName="Country" required>
+                <input type="text" class="form-control" placeholder="Enter country" name="Country" id="Country" [(ngModel)]="filmCreationForm.Country" required>
             </div>
-            <div class="form-group">
-                <label for="Genre">Genre:</label>
-                <input type="text" class="form-control" name="Genre" id="Genre" formControlName="Genre" required>
+            <div class="form-group" *ngFor="let genre of filmCreationForm.Genre; let i = index">
+                <label for="Genre">Genre {{i+1}}:</label>
+                <input type="text" class="form-control mb-2" placeholder="Enter genre" name="name{{i}}" #name="ngModel" id="Genre" [(ngModel)]="genre.value" required>
+                <button class="btn" *ngIf="i>0 " (click)="removeGenre(i)">Remove</button>
             </div>
+            <button class="btn btn-primary" (click)="addGenre()">Add</button>
             <div class="form-group">
                 <label for="Slug">Slug:</label>
-                <input type="text" class="form-control" name="Slug" id="Slug" formControlName="Slug" required>
+                <input type="text" class="form-control" placeholder="Enter slug" name="Slug" id="Slug" [(ngModel)]="filmCreationForm.Slug" required>
             </div>
             <div class="form-group">
                 <label for="Photo">Photo:</label>
-                <input type="text" class="form-control" name="Photo" id="Photo" formControlName="Photo" required>
+                <input type="text" class="form-control" placeholder="Enter photo url" name="Photo" id="Photo" [(ngModel)]="filmCreationForm.Photo" required>
             </div>
             <div class="form-group">
                 <label for="RealeaseDate">RealeaseDate:</label>
-                <input type="date" class="form-control" name="RealeaseDate" formControlName="RealeaseDate" id="RealeaseDate">
+                <input type="date" class="form-control" name="RealeaseDate" [(ngModel)]="filmCreationForm.RealeaseDate" id="RealeaseDate">
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="filmCreationForm.invalid">Submit</button>
-
         </form>
     </div>
 </div>

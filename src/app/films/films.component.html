@@ -11,7 +11,10 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12" *ngIf="!allFilms || !allFilms.length">
+    <div *ngIf="!total && !loading">
+        Sorry no film found in the data base
+    </div>
+    <div class="col-md-12" *ngIf="loading">
         <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
     </div>
 
@@ -19,6 +22,6 @@
 <div class="row mt-2">
     <div class="pl-3">
         <button type="button" class="btn btn-primary" (click)="gotoPreviousFilm()" *ngIf="presentCount > 0">Previous</button>
-        <button type="button" class="btn btn-primary" (click)="gotoNextFilm()" *ngIf="total> presentCount">Next</button>
+        <button type="button" class="btn btn-primary" (click)="gotoNextFilm()" *ngIf="(presentCount+1) < total">Next</button>
     </div>
 </div>

@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
 import {DataBearerService} from '../data-bearer.service';
 @Component({
     selector: 'app-new-film',
@@ -8,7 +8,7 @@ import {DataBearerService} from '../data-bearer.service';
     styleUrls: ['./new-film.component.css']
 })
 export class NewFilmComponent implements OnInit {
-    filmCreationForm: FormGroup;
+    filmCreationForm: any;
     error: any;
     isSuccess = false;
     loading: boolean;
@@ -16,27 +16,42 @@ export class NewFilmComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.filmCreationForm = new FormGroup({
-            Name: new FormControl(),
-            Description: new FormControl(),
-            Rating: new FormControl(),
-            TicketPrice: new FormControl(),
-            Country: new FormControl(),
-            Genre: new FormControl(),
-            Slug: new FormControl(),
-            Photo: new FormControl(),
-            RealeaseDate: new FormControl()
+        this.filmCreationForm = {
+            Name: '',
+            Description: '',
+            Rating: '',
+            TicketPrice: '',
+            Country: '',
+            Genre: [{
+                'value': ''
+            }],
+            Slug: '',
+            Photo: '',
+            RealeaseDate: '',
+        };
+    }
+    addGenre() {
+        event.preventDefault();
+        event.stopPropagation();
+        this.filmCreationForm.Genre.push({
+            'value': ''
         });
+    }
+    removeGenre(index) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.filmCreationForm.Genre.splice(index, 1);
     }
     // ==========================================
     // inserting new film =======================
     // ==========================================
-    createNewFilm() {
+    createNewFilm(form: NgForm) {
+        window.scrollTo(0, 0);
         this.loading = true;
-        this.databearer.createNewFilm(this.filmCreationForm.value).subscribe((response: any) => {
+        this.databearer.createNewFilm(this.filmCreationForm).subscribe((response: any) => {
             this.loading = false;
             if (response.status) {
-                this.filmCreationForm.reset();
+                form.reset();
                 this.isSuccess = true;
                 this.router.navigate(['films']);
             } else {
