@@ -54,10 +54,17 @@ export class NewFilmComponent implements OnInit {
                 form.reset();
                 this.isSuccess = true;
                 this.router.navigate(['films']);
-            } else {
+            } else if (response.message) {
                 this.isSuccess = false;
                 this.error = response.message;
+            } else {
+                this.isSuccess = false;
+                this.error = response;
             }
+        }, (error) => {
+            this.loading = false;
+            this.isSuccess = false;
+            this.error = error.error.text;
         });
     }
 }
